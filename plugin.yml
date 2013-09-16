@@ -1,21 +1,21 @@
 name: NeedTown
 version: 2.6
 main: me.jacklin213.needtown.NeedTown
-description: Need a town? Just ask for it!
+description: 마을이 필요하신가요? 요청만 하세요!
 author: jacklin213
 authors: [BMX_ATVMAN14, jacklin213]
 
 softdepend: [Towny]
 
 commands:
-  needtown:
+  마을구함:
     description: Allows people to use the NeedTown command
     permission: needtown.use
     aliases: nt
-    usage: The correct usage is /needtown or /nt
-  needtownr:
-    description: Reload Command for console
-    aliases: ntr
+    usage: 올바른 사용법은 /마을구함 아니면 /nt
+  니드타운리로드:
+    description: 콘솔에서 리로드 하기
+    aliases: 니타리로드
 
 permissions:
   needtown.*:
