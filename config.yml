@@ -13,9 +13,9 @@ CustomNeedTownMessage: true
 # Use Cooldowns: true / false
 Cooldowns: true
 # In seconds
-Cooldown-time: 10
+Cooldown-time: 30
 # Cooldown message:
-Cooldown-Message: '<red>This command is on Cooldown!'
+Cooldown-Message: '<red>너무 자주 입력할 수 없습니다!'
 
 # Custom message
 # Put '%p' where you want the player name to appear
@@ -24,7 +24,7 @@ Cooldown-Message: '<red>This command is on Cooldown!'
 # Example:
 
 #Message: '<gold>%p <green>needs a town/city! <red>Town Owners <green>plz be sure to invite <gold>%p <aqua>!'
-Message: '<gold>%p <aqua>would like to be invited to a town/city! <red>Town Owners <aqua>plz be sure to invite <gold>%p <aqua>!'
+Message: '<gold>%p <aqua>님이 마을에 들어가고 싶어합니다! <red>촌장님께서는 <gold>%p <aqua>를 해주세요!'
 
 # Remeber to only have 1 message. If you have 2 messages it will read it as a error and send you the default message
 
