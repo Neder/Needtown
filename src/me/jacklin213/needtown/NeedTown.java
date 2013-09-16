@@ -37,7 +37,7 @@ public class NeedTown extends JavaPlugin {
 	private List<String> cantDoCommand = new ArrayList<String>();
 
 	public void onDisable() {
-		logger.info(String.format("[%s] Disabled Version %s", getDescription()
+		logger.info(String.format("[%s] 비활성화됨, 버전 %s", getDescription()
 				.getName(), getDescription().getVersion()));
 	}
 
@@ -65,14 +65,14 @@ public class NeedTown extends JavaPlugin {
 				 *  We either failed to find Towny
 				 *  or the Scheduler failed to register the task.
 				 */
-				logger.severe(String.format("[%s] Could not find Towny, disabling plugin...", getDescription().getName()));
-				logger.severe(String.format("[%s] is now Disabled", getDescription().getName()));;
+				logger.severe(String.format("[%s] Towny를 발견하지 못했습니다, 플러그인 비활성화 중...", getDescription().getName()));
+				logger.severe(String.format("[%s] 비활성화되었습니다.", getDescription().getName()));;
 				pm.disablePlugin(this);
 				return;
 			}
 		}
 		
-		logger.info(String.format("[%s] Enabled Version %s by jacklin213",
+		logger.info(String.format("[%s] 활성화됨, 버전 %s by jacklin213",
 				getDescription().getName(), getDescription().getVersion()));
 		
 		// Creates Config.yml + Colors.yml
@@ -93,7 +93,7 @@ public class NeedTown extends JavaPlugin {
 			}
 			if (!colorFile.exists()) {
 				try {
-					this.logger.info("[NeedTown] Generating colors.yml");
+					this.logger.info("[NeedTown] colors.yml 을 생성합니다");
 					PrintStream out = new PrintStream(new FileOutputStream(
 							this.colorFile));
 					out.println("# ======= Color.yml ======= #");
@@ -121,12 +121,12 @@ public class NeedTown extends JavaPlugin {
 					out.println("# Copyright BMX_ATVMAN14,jacklin213,LinCraft,LinProdutions 2012");
 					out.close();
 				} catch (IOException e) {
-					this.logger.severe(String.format("[%s] Error in creating file !", getDescription().getName()));
+					this.logger.severe(String.format("[%s] 파일 생성 실패 !", getDescription().getName()));
 				}
 				
 			}
 			
-			this.getLogger().info("Reqired files Generated");
+			this.getLogger().info("필요한 파일 생성 ");
 		}
 	}
 
@@ -137,10 +137,10 @@ public class NeedTown extends JavaPlugin {
 		  int cdTime = (getCooldownTime() * 20);
 		  chatPluginPrefix = format(getConfig().getString("PluginPrefix")) + " ";
 		  // Check if sender is a player
-		  if (commandLabel.equalsIgnoreCase("needtownr") || commandLabel.equalsIgnoreCase("ntr")){
+		  if (commandLabel.equalsIgnoreCase("니드타운리로드") || commandLabel.equalsIgnoreCase("니타리로드")){
 			  if (sender.hasPermission("needtown.reload")){
 				  if (sender instanceof Player){
-					  sender.sendMessage(chatPluginPrefix + "Console only command!"); 
+					  sender.sendMessage(chatPluginPrefix + "콘솔에서만 사용가능합니다!"); 
 					  return true;
 				  }
 				  reloadNTConsole(sender);
@@ -151,16 +151,16 @@ public class NeedTown extends JavaPlugin {
 			  Player player = (Player)sender;
 			  final String playerName = player.getName();
 			  if (player.hasPermission("needtown.use")) {
-				  if ((cmd.getName().equalsIgnoreCase("needtown")) || (cmd.getName().equalsIgnoreCase("nt"))) {
+				  if ((cmd.getName().equalsIgnoreCase("마을구함")) || (cmd.getName().equalsIgnoreCase("nt"))) {
 					  
 					  if (args.length == 1) {
 						  if (player.hasPermission("needtown.reload")) {
-							  if (args[0].equalsIgnoreCase("reload")) {
+							  if (args[0].equalsIgnoreCase("리로드")) {
 								  reloadNT(sender);
 								  return true;
 							  }
 						  } else {
-							  player.sendMessage(ChatColor.RED + "Error: You do not have permission to do that!");
+							  player.sendMessage(ChatColor.RED + "오류: 이 명령어를 사용할 권한이 없습니다!");
 							  return true;
 						  }
 					  }
@@ -169,7 +169,7 @@ public class NeedTown extends JavaPlugin {
 					  if (useTowny){
 						  List<Resident> residentList = TownyUniverse.getDataSource().getResidentsWithoutTown();
 						  if (!residentList.contains(player)){
-							  player.sendMessage(chatPluginPrefix + "You cannot use this command because you are already in a town!"); 
+							  player.sendMessage(chatPluginPrefix + "이미 마을에 소속되어 있으므로 이 명령어를 사용할 수 없습니다!"); 
 							  return true;
 						  } else {
 							  if (useCooldown){
@@ -194,11 +194,11 @@ public class NeedTown extends JavaPlugin {
 				  }
 				 
 			  } else {
-				  player.sendMessage(ChatColor.RED + "Error: You do not have permission to do that!");
+				  player.sendMessage(ChatColor.RED + "오류: 이 명령어를 사용할 권한이 없습니다!");
 				  return true;
 			  }
 		  } else {
-			  sender.sendMessage("This is a player only command");
+			  sender.sendMessage("플레이어만 이 명령어를 사용할 수 있습니다");
 			  return true;
 		  }
 		  return false;
@@ -225,10 +225,10 @@ public class NeedTown extends JavaPlugin {
 	public boolean defaultmessage(Player player) {
 		chatPluginPrefix = format(getConfig().getString("PluginPrefix")) + " ";
 		Bukkit.broadcastMessage(chatPluginPrefix + ChatColor.GOLD + player.getDisplayName()
-				+ ChatColor.AQUA + " would like to be invited to a town! "
-				+ ChatColor.RED + "Town owners" + ChatColor.AQUA
-				+ " make sure to invite " + ChatColor.GOLD
-				+ player.getDisplayName() + ChatColor.AQUA + "!");
+				+ ChatColor.AQUA + " 님이 마을에 들어가고 싶어합니다! "
+				+ ChatColor.RED + "촌장님께서는" + ChatColor.AQUA
+				+ "" + ChatColor.GOLD
+				+ player.getDisplayName() + ChatColor.AQUA + "님을 초대해주세요!");
 
 		return true;
 	}
@@ -244,8 +244,8 @@ public class NeedTown extends JavaPlugin {
 			cdTime = Integer.parseInt(getConfig().getString("Cooldown-time"));
 			return cdTime;
 		} catch (NumberFormatException e){
-			this.logger.info(String.format("[%s] Error in loading the Cooldown value in the config", getDescription().getName()));
-			this.logger.info(String.format("[%s] Please fix and reload the plugin", getDescription().getName()));
+			this.logger.info(String.format("[%s] 설정값에서 CoolDown 값을 읽어오지 못했습니다.", getDescription().getName()));
+			this.logger.info(String.format("[%s] 수정하신 후 플러그인을 리로드해 주시기 바랍니다", getDescription().getName()));
 		}	
 		return 0;
 	}
@@ -331,7 +331,7 @@ public class NeedTown extends JavaPlugin {
 		chatPluginPrefix = format(getConfig().getString("PluginPrefix")) + " ";
 		reloadConfig();
 		boolean useTowny = getConfig().getBoolean("TownyIntegration");
-		  String string = "<green>Config reloaded!";
+		  String string = "<green>설정값이 리로드되었습니다!";
 		  if (useTowny){
 				checkPlugins();
 				if ((towny == null) || (getServer().getScheduler().scheduleSyncDelayedTask(this, new onLoadedTask(this),1) == -1)){
@@ -339,8 +339,8 @@ public class NeedTown extends JavaPlugin {
 					 *  We either failed to find Towny
 					 *  or the Scheduler failed to register the task.
 					 */
-					logger.severe(String.format("[%s] Could not find Towny, disabling plugin...", getDescription().getName()));
-					logger.severe(String.format("[%s] is now Disabled", getDescription().getName()));;
+					logger.severe(String.format("[%s] Towny를 발견하지 못했습니다. 플러그인 비활성화 중...", getDescription().getName()));
+					logger.severe(String.format("[%s] 비활성화되었습니다.", getDescription().getName()));;
 					pm.disablePlugin(this);
 				}
 			}
@@ -363,12 +363,12 @@ public class NeedTown extends JavaPlugin {
 					 *  We either failed to find Towny
 					 *  or the Scheduler failed to register the task.
 					 */
-					logger.severe(String.format("[%s] Could not find Towny, disabling plugin...", getDescription().getName()));
-					logger.severe(String.format("[%s] is now Disabled", getDescription().getName()));;
+					logger.severe(String.format("[%s] Towny를 발견하지 못했습니다. 플러그인 비활성화 중...", getDescription().getName()));
+					logger.severe(String.format("[%s] 비활성화되었습니다", getDescription().getName()));;
 					pm.disablePlugin(this);
 				}
 			}
-		  logger.info(String.format("[%s] Config Reloaded!", getDescription().getName()));
+		  logger.info(String.format("[%s] 설정값이 리로드되었습니다!", getDescription().getName()));
 	}
 
 	/*
